@@ -2,7 +2,6 @@ import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { TextInput } from "react-native";
 import { useState } from "react";
 import React from "react";
-
 const SearchBar = () => {
   const [textInput, setTextInput] = useState("");
   const SubmitSearch = () => {
@@ -12,8 +11,12 @@ const SearchBar = () => {
     <View style={styles.SearchContainer}>
       <TextInput
         style={styles.text}
-        defaultValue="Enter in a value"
+        placeholder="Enter in a value"
+        placeholderTextColor={"red"}
+        value={textInput}
+        onChangeText={(value) => setTextInput(value)}
       ></TextInput>
+
       <View>
         <Text onPress={SubmitSearch}>Search</Text>
       </View>
