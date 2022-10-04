@@ -1,7 +1,7 @@
 import { View, Text, Dimensions, StyleSheet } from "react-native";
 import MapView from "react-native-maps";
 import React from "react";
-
+import SearchBar from "../../Src/Components/SearchBar/SearchBar";
 const Mapview = () => {
   return (
     <View style={styles.container}>
@@ -15,6 +15,7 @@ const Mapview = () => {
         mapType="satellite"
         style={styles.map}
       />
+      <SearchBar />
     </View>
   );
 };
@@ -23,7 +24,6 @@ export default Mapview;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: "#fff",
     alignItems: "center",
     justifyContent: "center",
