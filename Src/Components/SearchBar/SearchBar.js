@@ -1,16 +1,27 @@
 import { StyleSheet, Text, View, Dimensions } from "react-native";
 import { TextInput } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import React from "react";
 const SearchBar = () => {
   const [textInput, setTextInput] = useState("");
-  const SubmitSearch = () => {
-    console.warn("Submit");
+  const [servres, setServres] = useState([]);
+
+  const fetchData = async () => {
+    const dataFromServer = await SubmitSearch();
+    setServres(dataFromServer);
+    console.log(servres);
+  };
+
+  const SubmitSearch = async () => {
+    const response = await fetch(
+      "https://jsonplaceholder.typicode.com/todos/1"
+    );
+    const data = await response.json();
+    return data;
   };
   return (
     <View style={styles.SearchContainer}>
       <TextInput
-        style={styles.text}
         placeholder="Enter in a value"
         placeholderTextColor={"red"}
         value={textInput}
@@ -18,7 +29,7 @@ const SearchBar = () => {
       ></TextInput>
 
       <View>
-        <Text onPress={SubmitSearch}>Search</Text>
+        <Text onPress={fetchData}>Search</Text>
       </View>
     </View>
   );
@@ -27,9 +38,6 @@ const SearchBar = () => {
 export default SearchBar;
 
 const styles = StyleSheet.create({
-  text: {
-    fontSize: "30",
-  },
   SearchContainer: {
     position: "absolute",
     flexDirection: "row",
@@ -44,6 +52,6 @@ const styles = StyleSheet.create({
     borderColor: "##5f696d ",
     backgroundColor: "#Cdd9de",
     opacity: 0.5,
-    borderRadius: "40%",
+    borderRadius: 50,
   },
 });
